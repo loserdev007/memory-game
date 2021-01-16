@@ -4,6 +4,8 @@
 	<meta charset="utf-8">
 	<title></title>
    <style type="text/css">
+      
+      /* Global */
       ul{
          list-style-type: none;
          flex-wrap: wrap;
@@ -12,53 +14,114 @@
          display: inline-block;
          margin: 20px 30px;
       }
-      .flip-card {
-         background-color: transparent;
-         width: 250px;
-         height: 250px;
-         perspective: 1000px;
+      i{
+         font-size: 140px;
+         color: red;
+         pointer-events: none;
       }
 
+      /* Card Flipping Styles */
+      .flip-card {
+         background-color: transparent;
+         width: 200px;
+         height: 200px;
+         perspective: 1000px;
+      }
       .flip-card-inner {
          position: relative;
          width: 100%;
          height: 100%;
          text-align: center;
-         transition: transform 0.6s;
+         transition: transform 200ms;
          transform-style: preserve-3d;
          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
       }
-
-      .flip{
-         transform: rotateY(180deg);
-      }
-      .complete *{
-         pointer-events: none;
-      } 
       .flip-card-front, .flip-card-back {
          position: absolute;
          width: 100%;
          height: 100%;
          -webkit-backface-visibility: hidden;
          backface-visibility: hidden;
+         display: flex;
+         justify-content: center;
+         align-items: center;
       }
-
       .flip-card-front {
          background-color: #2980b9;
          color: black;
       }
-
       .flip-card-back {
-         background-color: #bbb;
+         background-color: #fff;
          color: white;
          transform: rotateY(180deg);
+      }
+
+
+      /* Custom Css */
+      .flip{ transform: rotateY(180deg); }
+      .complete *{ pointer-events: none; }
+
+
+      /* The Modal (background) */
+      #myModal {
+        display: none; /* Hidden by default */
+        position: fixed; /* Stay in place */
+        z-index: 1; /* Sit on top */
+        left: 0;
+        top: 0;
+        justify-content: center;
+        align-items: center;
+        width: 100%; /* Full width */
+        height: 100%; /* Full height */
+        overflow: auto; /* Enable scroll if needed */
+        background-color: rgb(0,0,0); /* Fallback color */
+        background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+      }
+
+      /* Modal Content */
+      #myModal .myModal-content {
+         display: inline-block;
+         background-color: #fefefe;
+         margin: 0 auto;
+         padding: 40px;
+         position: relative;
+         /*border: 1px solid #888;*/
+      }
+      #modal-close:hover,
+      #modal-close:focus {
+        color: cyan;
+        text-decoration: none;
+        cursor: pointer;
       }
    </style>
    <link rel="stylesheet" type="text/css" href="../css/bootstrap.min.css">
    <!-- <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/> -->
-   
+   <!-- <link rel="stylesheet" type="text/css" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css"> -->
+   <link rel="stylesheet" type="text/css" href="css/ionicons.min.css">
 </head>
 <body class="bg-dark">
+
+   <div id="myModal">
+      <div class="myModal-content">
+         <!-- <i  class="ion-close-round"></i> -->
+         <h3 id="modalContent" class="h3">Wanna start game again?</h3>
+         <div class="d-flex justify-content-end mt-4">
+            <button id="start-over" class="btn btn-primary mx-2">Start</button>
+            <button id="modal-close" class="btn btn-danger">Cancel</button>
+         </div>
+      </div>
+   </div>
+
+   <div class="user-area bg-secondary p-4">
+      <label for="difficulty-selection" class="d-inline-block mx-3 text-white">Difficulty:</label>
+      <select id="difficulty-selection" class="w-25">
+         <option value="1">Easy</option>
+         <option value="2" selected="selected">Medium</option>
+         <option value="3">Hard</option>
+      </select>
+      <button id="start" type="button" class="btn btn-warning w-25" style="margin-left: 40px;">Start</button>
+   </div>
+
 
    <ul id="cardList" class="w-100 mt-5 d-flex justify-content-space-evenly">
 <!--       <li id="11">
@@ -67,12 +130,12 @@
              <div class="flip-card-front">
              </div>
              <div class="flip-card-back">
-               <img src="img/justin.jpg" alt="Justin" style="width:250px;height:250px;">
+               <i class="ion-social-html5"></i>
              </div>
            </div>
          </div>
-      </li>
-      <li id="11">
+      </li> -->
+<!--       <li id="11">
          <div class="flip-card">
            <div class="flip-card-inner">
              <div class="flip-card-front">

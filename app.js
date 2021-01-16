@@ -185,7 +185,7 @@ const mainFunction = (Element) => {
             // If no card available to open
             if (SCORE == GOAL) {
                // showModal('YAHOOO!\nYou\'v won the game. Start Over?');
-               showModal('YAHOOO!\nYou\'v won the game. Start Over?', multipleViews);
+               showModal('YAHOOO!\nYou\'v won the game. Start again?', multipleViews);
                resetGameLogic();
                reset();
                return;
